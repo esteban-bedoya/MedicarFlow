@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/MedicarFlow/public/assets/libs/bootstrap/bootstrap.min.css">
-
+    <script src="/MedicarFlow/public/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -32,6 +31,19 @@
             }
         });
     </script>
+
+    <h1>3. Prueba de Sweetalert2</h1>
+    <script src="/MedicarFlow/public/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+    <script>
+        Swal.fire({
+            title: '¡Funciona!',
+            text: 'SweetAlert2 está integrado correctamente',
+            icon: 'success',
+            confirmButtonText: 'Genial'
+        });
+    </script>
+
+
 </body>
 
 </html>
