@@ -16,23 +16,28 @@
             <div class="collapse navbar-collapse" id="navAdmin">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?= $activePage == 'dashboard' ? 'active text-neon' : '' ?>" href="dashboard.php">
+                        <a class="nav-link <?= $activePage == 'dashboard' ? 'active text-neon' : '' ?>" href="/medicarflow/public/dashboard.php">
                             <i class="bi bi-speedometer2"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $activePage == 'usuarios' ? 'active text-neon' : '' ?>" href="usuarios.php">
+                        <a class="nav-link <?= $activePage == 'usuarios' ? 'active text-neon' : '' ?>" href="/medicarflow/public/usuarios.php">
                             <i class="bi bi-people"></i> Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $activePage == 'nomina' ? 'active text-neon' : '' ?>" href="nomina.php">
+                        <a class="nav-link <?= $activePage == 'nomina' ? 'active text-neon' : '' ?>" href="/medicarflow/public/nomina.php">
                             <i class="bi bi-table"></i> Nómina
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $activePage == 'reportes' ? 'active text-neon' : '' ?>" href="reportes.php">
+                        <a class="nav-link <?= $activePage == 'reportes' ? 'active text-neon' : '' ?>" href="/medicarflow/public/reportes.php">
                             <i class="bi bi-file-earmark-pdf"></i> Reportes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage == 'perfil' ? 'active text-neon' : '' ?>" href="/medicarflow/public/perfil.php">
+                            <i class="bi bi-file-earmark-pdf"></i> Mi perfil
                         </a>
                     </li>
                     <li class="nav-item ms-lg-3">
