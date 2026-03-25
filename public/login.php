@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedicarFlow - Login</title>
-    <link rel="stylesheet" href="../assets/libs/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/libs/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/globals/base.css">
-    <link rel="stylesheet" href="../assets/css/globals/login.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/globals/base.css">
+    <link rel="stylesheet" href="assets/css/globals/login.css">
 </head>
 
 <body class="bg-dark d-flex align-items-center vh-100">
