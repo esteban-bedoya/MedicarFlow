@@ -37,7 +37,7 @@ $activePage = 'login';
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Contraseña:</label>
-                            <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                            <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña ••••••" required>
                         </div>
 
                         <button type="submit" class="btn btn-neon w-100 fw-bold mt-2">
