@@ -7,7 +7,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-neon">
         <div class="container">
             <a class="navbar-brand fw-bold" href="dashboard.php">
-                <i class="bi bi-shield-lock"></i> Medicar<span class="text-neon">Flow</span> <small class="text-muted text-uppercase" style="font-size: 10px;">Admin</small>
+                <i class="bi bi-shield-lock text-neon"></i>
+                <span class="text-white">Medicar</span><span class="text-neon">Flow</span>
+                <small class="text-white-50 text-uppercase ms-2" style="font-size: 10px; letter-spacing: 1px;">
+                    Admin
+                </small>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAdmin">
                 <span class="navbar-toggler-icon"></span>
