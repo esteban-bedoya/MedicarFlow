@@ -32,9 +32,9 @@ class AuthController
 
             // Redirección limpia según el rol de tu DB
             if ($user['fk_rol'] == 1) {
-                header("Location: ../../views/admin/dashboard.php");
+                header("Location: /medicarflow/public/dashboard.php");
             } else {
-                header("Location: ../../views/operativo/dashboard.php");
+                header("Location: /medicarflow/public/nomina.php");
             }
             exit;
         } else {
