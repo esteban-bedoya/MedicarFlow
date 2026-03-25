@@ -29,7 +29,7 @@ $activePage = 'login';
                         <p class="text-muted">Módulo de Nómina - Esteban Bedoya</p>
                     </div>
 
-                    <form action="app/controllers/AuthController.php?action=login" method="POST">
+                    <form action="../app/controllers/AuthController.php?action=login" method="POST">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Usuario:</label>
                             <input type="text" name="username" class="form-control" placeholder="Ej: admin_ana" required>
