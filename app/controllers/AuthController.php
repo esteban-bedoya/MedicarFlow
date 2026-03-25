@@ -1,61 +1,47 @@
 <?php
 // medicarflow/app/controllers/AuthController.php
 
-require_once __DIR__ . '/../../config/db.php'; // Asegúrate de que este archivo exista
+require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../models/User.php';
 
 class AuthController
 {
     public function login()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header("Location: ../../index.php");
             exit;
         }
 
-        // Cambiamos 'correo' por 'username' según tu nueva DB
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        // Buscamos al usuario por su username
         $user = User::findByUsername($username);
 
-        // IMPORTANTE: En tu volcado SQL las claves son '12345' (texto plano).
-        // Si no has encriptado, comparamos directo. Si ya usas hash, usa password_verify.
-        if ($user && ($password === $user['password'])) {
+        // Verificamos con password_verify porque ya corrimos el script de encriptación
+        if ($user && password_verify($password, $user['password'])) {
 
             $_SESSION['logged'] = true;
             $_SESSION['id_user'] = $user['id_user'];
             $_SESSION['nombre'] = $user['nombre_completo'];
             $_SESSION['rol'] = $user['fk_rol'];
 
-            // Redirección según Roles de hospital_pro: 1: Admin, 2: Operativo
+            // Redirección limpia según el rol de tu DB
             if ($user['fk_rol'] == 1) {
                 header("Location: ../../views/admin/dashboard.php");
             } else {
                 header("Location: ../../views/operativo/dashboard.php");
             }
             exit;
-        }
-
-        $user = User::findByUsername($username);
-
-        // password_verify compara el texto plano de la pantalla con el hash de la DB
-        if ($user && password_verify($password, $user['password'])) {
-            // LOGIN EXITOSO
-            $_SESSION['logged'] = true;
-            // ... resto de tu lógica de redirección
         } else {
-            // ERROR
-            $_SESSION['error'] = "Credenciales incorrectas";
+            // Si falla la clave o no existe el usuario
+            $_SESSION['error'] = "Usuario o contraseña incorrectos";
             header("Location: ../../index.php");
+            exit;
         }
-
-
-        $_SESSION['error'] = "Usuario o contraseña incorrectos";
-        header("Location: ../../index.php");
-        exit;
     }
 }
