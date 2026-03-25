@@ -25,7 +25,7 @@ class AuthController
         // IMPORTANTE: En tu volcado SQL las claves son '12345' (texto plano).
         // Si no has encriptado, comparamos directo. Si ya usas hash, usa password_verify.
         if ($user && ($password === $user['password'])) {
-            
+
             $_SESSION['logged'] = true;
             $_SESSION['id_user'] = $user['id_user'];
             $_SESSION['nombre'] = $user['nombre_completo'];
@@ -39,6 +39,20 @@ class AuthController
             }
             exit;
         }
+
+        $user = User::findByUsername($username);
+
+        // password_verify compara el texto plano de la pantalla con el hash de la DB
+        if ($user && password_verify($password, $user['password'])) {
+            // LOGIN EXITOSO
+            $_SESSION['logged'] = true;
+            // ... resto de tu lógica de redirección
+        } else {
+            // ERROR
+            $_SESSION['error'] = "Credenciales incorrectas";
+            header("Location: ../../index.php");
+        }
+
 
         $_SESSION['error'] = "Usuario o contraseña incorrectos";
         header("Location: ../../index.php");
