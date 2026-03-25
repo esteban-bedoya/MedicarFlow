@@ -1,35 +1,26 @@
+/* base.css */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
-html, body {
-
-    color: #fff;
-    height: 100%; /* para usar toda la pantalla*/
-    min-height: 100%; /* para usar toda la pantalla*/
+body {
     background-color: #062b4f;
-    overscroll-behavior: none; /*para que no rebote al hacer scroll*/
+    /* Quitamos el color: #fff de aquí para que no afecte a los inputs */
 }
 
-/* Contenedor principal de la páginas pags ya logueadas */
+/* Este es el contenedor para tus páginas internas (Dashboard, Listados) */
 .main-content {
     background-color: #ffffff;
-    /* azul solo dentro del contenido */
+    color: #333; /* Texto oscuro para legibilidad dentro de las tablas */
     min-height: 80vh;
-    /* ocupa casi toda la altura de la pantalla */
     margin: 40px auto;
-    /* margen arriba/abajo y centrado horizontal */
-    padding: 20px;
-    /* espacio interno */
+    padding: 30px;
     border-radius: 20px;
-    /* esquinas redondeadas */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    /* “efecto de elevación” */
-    max-width: 2000px; 
-    /*evita que no se estire demasiado el azul, para que se vea blanco a los lados */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    max-width: 1200px; /* Un ancho más estándar para que no se vea infinito */
 }

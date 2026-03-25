@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedicarFlow - Login</title>
-    <link rel="stylesheet" href="assets/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/globals/base.css">
     <link rel="stylesheet" href="assets/css/globals/login.css">
@@ -17,7 +17,7 @@
             <div class="col-md-4">
                 <div class="card shadow-lg border-0 p-4 login-card">
                     <div class="text-center mb-4">
-                        <h2 class="fw-bold">MEDICAR<span class="text-neon">FLOW</span></h2>
+                        <h2 class="fw-bold">Medicar<span class="text-neon">Flow</span></h2>
                         <p class="text-muted">Módulo de Nómina - Esteban Bedoya</p>
                     </div>
 
@@ -46,8 +46,8 @@
     </div>
 
 
-<script src="assets/libs/bootstrap.bundle.min.js"></script>
-<script src="assets/libs/sweetalert2.all.min.js"></script>
+<script src="assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="assets/libs/chartjs/chart.umd.min.js"></script>
 
 </body>
