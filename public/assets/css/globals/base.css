@@ -1,26 +1,17 @@
-/* base.css */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+/* medicarflow/public/assets/css/globals/base.css */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+:root {
+    --neon-green: #39FF14;
+    --dark-blue: #062b4f;
+    --neon-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
 }
 
-body {
-    background-color: #062b4f;
-    /* Quitamos el color: #fff de aquí para que no afecte a los inputs */
+/* Utilidades para usar en cualquier vista */
+.text-neon {
+    color: var(--neon-green) !important;
+    text-shadow: var(--neon-shadow);
 }
 
-/* Este es el contenedor para tus páginas internas (Dashboard, Listados) */
-.main-content {
-    background-color: #ffffff;
-    color: #333; /* Texto oscuro para legibilidad dentro de las tablas */
-    min-height: 80vh;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    max-width: 1200px; /* Un ancho más estándar para que no se vea infinito */
+.bg-dark-custom {
+    background-color: var(--dark-blue) !important;
 }

@@ -1,0 +1,20 @@
+/* medicarflow/public/assets/css/pages/dashboard.css */
+
+.card-stats {
+    border-left: 4px solid var(--neon-green);
+    transition: transform 0.3s ease;
+}
+
+.card-stats:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilo para los títulos de las gráficas */
+.chart-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
