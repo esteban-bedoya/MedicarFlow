@@ -1,16 +1,17 @@
 <?php
-$flash = $_SESSION['flash'] ?? null;
+$mensajeEmergente = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$isAdmin = (int) ($_SESSION['rol'] ?? 0) === 1;
-$isEditing = isset($editingNomina) && is_array($editingNomina);
+$usuarioEsAdmin = (int) ($_SESSION['rol'] ?? 0) === 1;
+$registroEnEdicion = isset($editingNomina) && is_array($editingNomina);
 
-$formAction = $isEditing
+$accionFormulario = $registroEnEdicion
     ? '/medicarflow/public/nomina.php?action=update'
     : '/medicarflow/public/nomina.php?action=store';
 
-$formTitle = $isEditing ? 'Editar registro de nomina' : 'Registrar nuevo cargo';
-$submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
+$tituloFormulario = $registroEnEdicion ? 'Editar registro de nomina' : 'Registrar nuevo cargo';
+$textoBotonGuardar = $registroEnEdicion ? 'Actualizar registro' : 'Guardar registro';
+$mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : 'null';
 ?>
 
 <main class="container py-4">
@@ -24,17 +25,10 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
         <div class="text-lg-end">
             <span class="badge text-bg-dark border border-neon px-3 py-2">
                 <i class="bi bi-lightning-charge-fill text-neon"></i>
-                Rol actual: <?= $isAdmin ? 'Administrador' : 'Operativo' ?>
+                Rol actual: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?>
             </span>
         </div>
     </div>
-
-    <?php if ($flash): ?>
-        <div class="alert alert-<?= htmlspecialchars($flash['type'], ENT_QUOTES, 'UTF-8') ?> alert-dismissible fade show" role="alert">
-            <?= htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8') ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php endif; ?>
 
     <div class="row g-4">
         <div class="col-12 col-xl-4">
@@ -42,12 +36,12 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
                 <div class="card-header border-bottom border-secondary">
                     <h2 class="h5 mb-0">
                         <i class="bi bi-cash-stack text-neon"></i>
-                        <?= $formTitle ?>
+                        <?= $tituloFormulario ?>
                     </h2>
                 </div>
                 <div class="card-body">
-                    <form action="<?= $formAction ?>" method="POST" novalidate>
-                        <?php if ($isEditing): ?>
+                    <form action="<?= $accionFormulario ?>" method="POST" novalidate data-nomina-form>
+                        <?php if ($registroEnEdicion): ?>
                             <input type="hidden" name="id_nom" value="<?= (int) $editingNomina['id_nom'] ?>">
                         <?php endif; ?>
 
@@ -59,7 +53,7 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
                                 name="cargo"
                                 class="form-control"
                                 maxlength="50"
-                                value="<?= htmlspecialchars($isEditing ? $editingNomina['cargo'] : '', ENT_QUOTES, 'UTF-8') ?>"
+                                value="<?= htmlspecialchars($registroEnEdicion ? $editingNomina['cargo'] : '', ENT_QUOTES, 'UTF-8') ?>"
                                 placeholder="Ej: Secretaria"
                                 required
                             >
@@ -74,7 +68,7 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
                                 class="form-control"
                                 min="0"
                                 step="0.01"
-                                value="<?= htmlspecialchars($isEditing ? (string) $editingNomina['sueldo'] : '', ENT_QUOTES, 'UTF-8') ?>"
+                                value="<?= htmlspecialchars($registroEnEdicion ? (string) $editingNomina['sueldo'] : '', ENT_QUOTES, 'UTF-8') ?>"
                                 placeholder="Ej: 1800000"
                                 required
                             >
@@ -89,7 +83,7 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
                                 class="form-control"
                                 min="0"
                                 step="1"
-                                value="<?= htmlspecialchars($isEditing ? (string) $editingNomina['faltas'] : '', ENT_QUOTES, 'UTF-8') ?>"
+                                value="<?= htmlspecialchars($registroEnEdicion ? (string) $editingNomina['faltas'] : '', ENT_QUOTES, 'UTF-8') ?>"
                                 placeholder="Ej: 0"
                                 required
                             >
@@ -98,13 +92,13 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
                         <div class="d-flex gap-2 flex-wrap">
                             <button type="submit" class="btn btn-outline-info">
                                 <i class="bi bi-floppy"></i>
-                                <?= $submitLabel ?>
+                                <?= $textoBotonGuardar ?>
                             </button>
 
-                            <?php if ($isEditing): ?>
+                            <?php if ($registroEnEdicion): ?>
                                 <a href="/medicarflow/public/nomina.php" class="btn btn-outline-secondary">
                                     <i class="bi bi-x-circle"></i>
-                                    Cancelar edicion
+                                    Cancelar edición
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -144,23 +138,23 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
                                         </td>
                                     </tr>
                                 <?php else: ?>
-                                    <?php foreach ($nominas as $nomina): ?>
+                                    <?php foreach ($nominas as $registroNomina): ?>
                                         <tr>
-                                            <td><?= (int) $nomina['id_nom'] ?></td>
-                                            <td><?= htmlspecialchars($nomina['cargo'], ENT_QUOTES, 'UTF-8') ?></td>
-                                            <td>$<?= number_format((float) $nomina['sueldo'], 2, ',', '.') ?></td>
-                                            <td><?= (int) $nomina['faltas'] ?></td>
+                                            <td><?= (int) $registroNomina['id_nom'] ?></td>
+                                            <td><?= htmlspecialchars($registroNomina['cargo'], ENT_QUOTES, 'UTF-8') ?></td>
+                                            <td>$<?= number_format((float) $registroNomina['sueldo'], 2, ',', '.') ?></td>
+                                            <td><?= (int) $registroNomina['faltas'] ?></td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center gap-2 flex-wrap">
-                                                    <a href="/medicarflow/public/nomina.php?edit=<?= (int) $nomina['id_nom'] ?>" class="btn btn-sm btn-outline-warning">
+                                                    <a href="/medicarflow/public/nomina.php?edit=<?= (int) $registroNomina['id_nom'] ?>" class="btn btn-sm btn-outline-warning">
                                                         <i class="bi bi-pencil-square"></i>
                                                         Editar
                                                     </a>
 
-                                                    <?php if ($isAdmin): ?>
-                                                        <form action="/medicarflow/public/nomina.php?action=delete" method="POST" class="m-0">
-                                                            <input type="hidden" name="id_nom" value="<?= (int) $nomina['id_nom'] ?>">
-                                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Esta accion eliminara el registro de nomina. ¿Deseas continuar?');">
+                                                    <?php if ($usuarioEsAdmin): ?>
+                                                        <form action="/medicarflow/public/nomina.php?action=delete" method="POST" class="m-0" data-delete-form>
+                                                            <input type="hidden" name="id_nom" value="<?= (int) $registroNomina['id_nom'] ?>">
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger">
                                                                 <i class="bi bi-trash3"></i>
                                                                 Eliminar
                                                             </button>
@@ -180,4 +174,99 @@ $submitLabel = $isEditing ? 'Actualizar registro' : 'Guardar registro';
     </div>
 </main>
 
+<script src="assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+<script>
+    const mensajeDelSistema = <?= $mensajeEmergenteJson ?>;
+    const formularioNomina = document.querySelector('[data-nomina-form]');
+    const formulariosDeEliminacion = document.querySelectorAll('[data-delete-form]');
+
+    const estilosBaseAlerta = {
+        background: '#0f172a',
+        color: '#f8fafc',
+        confirmButtonColor: '#39FF14',
+        customClass: {
+            popup: 'shadow-lg'
+        }
+    };
+
+    if (mensajeDelSistema) {
+        const iconosPorTipo = {
+            success: 'success',
+            danger: 'error',
+            warning: 'warning',
+            info: 'info'
+        };
+
+        Swal.fire({
+            ...estilosBaseAlerta,
+            icon: iconosPorTipo[mensajeDelSistema.type] || 'info',
+            title: mensajeDelSistema.type === 'success' ? 'Guardado' : 'Error',
+            text: mensajeDelSistema.message
+        });
+    }
+
+    if (formularioNomina) {
+        formularioNomina.addEventListener('submit', function (eventoFormulario) {
+            const campoCargo = document.getElementById('cargo');
+            const campoSueldo = document.getElementById('sueldo');
+            const campoFaltas = document.getElementById('faltas');
+
+            if (!campoCargo.value.trim()) {
+                eventoFormulario.preventDefault();
+                Swal.fire({
+                    ...estilosBaseAlerta,
+                    icon: 'warning',
+                    title: 'Cuidado',
+                    text: 'Olvidaste escribir el cargo.'
+                });
+                campoCargo.focus();
+                return;
+            }
+
+            if (campoSueldo.value.trim() === '' || campoFaltas.value.trim() === '') {
+                eventoFormulario.preventDefault();
+                Swal.fire({
+                    ...estilosBaseAlerta,
+                    icon: 'warning',
+                    title: 'Cuidado',
+                    text: 'Todos los campos son obligatorios.'
+                });
+                return;
+            }
+
+            if (Number.isNaN(Number(campoSueldo.value)) || Number.isNaN(Number(campoFaltas.value))) {
+                eventoFormulario.preventDefault();
+                Swal.fire({
+                    ...estilosBaseAlerta,
+                    icon: 'error',
+                    title: 'Solo Numeros',
+                    text: 'En sueldo y faltas no puedes poner letras.'
+                });
+                return;
+            }
+        });
+    }
+
+    formulariosDeEliminacion.forEach(function (formularioEliminar) {
+        formularioEliminar.addEventListener('submit', function (eventoEliminar) {
+            eventoEliminar.preventDefault();
+
+            Swal.fire({
+                ...estilosBaseAlerta,
+                icon: 'warning',
+                title: 'Estas seguro',
+                text: 'Si borras esto, desaparecera para siempre.',
+                showCancelButton: true,
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d'
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    formularioEliminar.submit();
+                }
+            });
+        });
+    });
+</script>
