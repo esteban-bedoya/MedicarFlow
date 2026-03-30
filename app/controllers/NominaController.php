@@ -44,10 +44,11 @@ class NominaController
         return $base . '?' . http_build_query($params);
     }
 
-    private function setFlash($type, $message)
+    private function setFlash($type, $title, $message)
     {
         $_SESSION['flash'] = [
             'type' => $type,
+            'title' => $title,
             'message' => $message,
         ];
     }
@@ -99,7 +100,7 @@ class NominaController
                 $editingNomina = Nomina::findById($editId);
 
                 if (!$editingNomina) {
-                    $this->setFlash('danger', 'El registro de nomina que intentas editar no existe.');
+                    $this->setFlash('error', '¡Error!', 'Ups, algo salió mal con la conexión o el registro no existe.');
                     header('Location: ' . $this->getRedirectUrl());
                     exit;
                 }
@@ -122,15 +123,15 @@ class NominaController
         $error = $this->validateNominaData($cargo, $sueldo, $faltas);
 
         if ($error !== null) {
-            $this->setFlash('danger', $error);
+            $this->setFlash('warning', '¡Cuidado!', $error);
             header('Location: ' . $this->getRedirectUrl(['form' => 'create']));
             exit;
         }
 
         if (Nomina::create($cargo, (float) $sueldo, (int) $faltas)) {
-            $this->setFlash('success', 'Registro de nomina creado correctamente.');
+            $this->setFlash('success', '¡Guardado!', '¡Listo! Los datos ya están en la base de datos.');
         } else {
-            $this->setFlash('danger', 'No fue posible crear el registro de nomina.');
+            $this->setFlash('error', '¡Error!', 'Ups, algo salió mal con la conexión.');
         }
 
         header('Location: ' . $this->getRedirectUrl());
@@ -150,7 +151,7 @@ class NominaController
         [$cargo, $sueldo, $faltas] = $this->sanitizeInput();
 
         if (!$id) {
-            $this->setFlash('danger', 'El identificador del registro no es valido.');
+            $this->setFlash('error', '¡Error!', 'Ups, algo salió mal con la conexión.');
             header('Location: ' . $this->getRedirectUrl());
             exit;
         }
@@ -158,15 +159,15 @@ class NominaController
         $error = $this->validateNominaData($cargo, $sueldo, $faltas);
 
         if ($error !== null) {
-            $this->setFlash('danger', $error);
+            $this->setFlash('warning', '¡Cuidado!', $error);
             header('Location: ' . $this->getRedirectUrl(['edit' => $id]));
             exit;
         }
 
         if (Nomina::updateById($id, $cargo, (float) $sueldo, (int) $faltas)) {
-            $this->setFlash('success', 'Registro de nomina actualizado correctamente.');
+            $this->setFlash('success', '¡Guardado!', '¡Listo! Los datos ya están en la base de datos.');
         } else {
-            $this->setFlash('danger', 'No fue posible actualizar el registro de nomina.');
+            $this->setFlash('error', '¡Error!', 'Ups, algo salió mal con la conexión.');
         }
 
         header('Location: ' . $this->getRedirectUrl());
@@ -185,15 +186,15 @@ class NominaController
         $id = filter_input(INPUT_POST, 'id_nom', FILTER_VALIDATE_INT);
 
         if (!$id) {
-            $this->setFlash('danger', 'El identificador del registro no es valido.');
+            $this->setFlash('error', '¡Error!', 'Ups, algo salió mal con la conexión.');
             header('Location: ' . $this->getRedirectUrl());
             exit;
         }
 
         if (Nomina::delete($id)) {
-            $this->setFlash('success', 'Registro de nomina eliminado correctamente.');
+            $this->setFlash('success', '¡Guardado!', '¡Listo! Los datos ya están en la base de datos.');
         } else {
-            $this->setFlash('danger', 'No fue posible eliminar el registro de nomina.');
+            $this->setFlash('error', '¡Error!', 'Ups, algo salió mal con la conexión.');
         }
 
         header('Location: ' . $this->getRedirectUrl());

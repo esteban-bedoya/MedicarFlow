@@ -193,7 +193,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
     if (mensajeDelSistema) {
         const iconosPorTipo = {
             success: 'success',
-            danger: 'error',
+            error: 'error',
             warning: 'warning',
             info: 'info'
         };
@@ -201,7 +201,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
         Swal.fire({
             ...estilosBaseAlerta,
             icon: iconosPorTipo[mensajeDelSistema.type] || 'info',
-            title: mensajeDelSistema.type === 'success' ? 'Guardado' : 'Error',
+            title: mensajeDelSistema.title || 'Información',
             text: mensajeDelSistema.message
         });
     }
@@ -217,8 +217,8 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                 Swal.fire({
                     ...estilosBaseAlerta,
                     icon: 'warning',
-                    title: 'Cuidado',
-                    text: 'Olvidaste escribir el cargo.'
+                    title: '¡Cuidado!',
+                    text: 'Olvidaste escribir el nombre del cargo.'
                 });
                 campoCargo.focus();
                 return;
@@ -229,7 +229,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                 Swal.fire({
                     ...estilosBaseAlerta,
                     icon: 'warning',
-                    title: 'Cuidado',
+                    title: '¡Cuidado!',
                     text: 'Todos los campos son obligatorios.'
                 });
                 return;
@@ -240,7 +240,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                 Swal.fire({
                     ...estilosBaseAlerta,
                     icon: 'error',
-                    title: 'Solo Numeros',
+                    title: '¡Solo Números!',
                     text: 'En sueldo y faltas no puedes poner letras.'
                 });
                 return;
@@ -255,7 +255,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
             Swal.fire({
                 ...estilosBaseAlerta,
                 icon: 'warning',
-                title: 'Estas seguro',
+                title: '¿Estás seguro?',
                 text: 'Si borras esto, desaparecera para siempre.',
                 showCancelButton: true,
                 confirmButtonText: 'Si, eliminar',
