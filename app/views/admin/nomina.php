@@ -20,7 +20,7 @@
     }
     ?>
 
-    <h1>Logueo como administrador</h1>
+    <h1>Nomina como administrador</h1>
 </body>
 
 </html>

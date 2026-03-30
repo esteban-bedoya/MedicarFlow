@@ -6,7 +6,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-neon">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="dashboard.php">
+            <a class="navbar-brand fw-bold" href="/medicarflow/public/nomina.php">
                 <i class="bi bi-person-badge text-neon"></i>
 
                 <span class="text-white">Medicar</span><span class="text-neon">Flow</span>
@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navOp">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?= $activePage == 'nomina' ? 'active text-neon' : '' ?>" href="nomina.php">
+                        <a class="nav-link <?= $activePage == 'nomina' ? 'active text-neon' : '' ?>" href="/medicarflow/public/nomina.php">
                             <i class="bi bi-pencil-square"></i> Registrar Nómina
                         </a>
                     </li>

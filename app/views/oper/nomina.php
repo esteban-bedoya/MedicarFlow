@@ -21,7 +21,7 @@
     ?>
 
 
-    <h1>Logueo como operador</h1>
+    <h1>Nomina como operador</h1>
 </body>
 
 </html>
