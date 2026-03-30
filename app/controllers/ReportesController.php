@@ -3,7 +3,7 @@
 
 class ReportesController
 {
-    private function requireAdmin()
+    private function requireSessionAdmin()
     {
 
         if (!isset($_SESSION['rol'])) {
@@ -18,7 +18,7 @@ class ReportesController
 
     public function index()
     {
-        $this->requireAdmin();
+        $this->requireSessionAdmin();
         include __DIR__ . '/../views/admin/reportes.php';
     }
 }

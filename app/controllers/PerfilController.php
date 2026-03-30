@@ -1,7 +1,7 @@
 <?php
-// medicarflow/app/controllers/NominaController.php
+// medicarflow/app/controllers/PerfilController.php
 
-class NominaController
+class PerfilController
 {
     private function requireSession()
     {
@@ -18,10 +18,10 @@ class NominaController
         // Lógica de Routing por Rol
         if ($_SESSION['rol'] == 1) {
         // Carga la vista de Administrador
-            include __DIR__ . '/../views/admin/nomina.php';
+            include __DIR__ . '/../views/admin/perfil.php';
         } else {
         // Carga la vista de Operativo
-            include __DIR__ . '/../views/oper/nomina.php';
+            include __DIR__ . '/../views/oper/perfil.php';
         }
     }
 }

@@ -4,18 +4,24 @@
 class DashboardController
 {
 
-    public function index()
+    private function requireSessionAdmin()
     {
-        // 1. Verificar sesión (Seguridad centralizada)
-        if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
-            header("Location: login.php");
+
+        if (!isset($_SESSION['rol'])) {
+            header('Location: /login');
             exit;
         }
 
-        // 2. Lógica de Routing por Rol
-        if ($_SESSION['rol'] == 1) {
-            // Carga la vista de Administrador
-            include __DIR__ . '/../views/admin/dashboard.php';
+        if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
+            die('No tienes permisos para esta accion.');
         }
     }
+
+    public function index()
+    {
+
+        $this->requireSessionAdmin();
+        include __DIR__ . '/../views/admin/dashboard.php';
+    }
 }
+
