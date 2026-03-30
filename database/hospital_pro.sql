@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-03-2026 a las 09:49:28
+-- Tiempo de generación: 31-03-2026 a las 01:49:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -271,8 +271,8 @@ CREATE TABLE `nomina_pers` (
 --
 
 INSERT INTO `nomina_pers` (`id_nom`, `cargo`, `sueldo`, `faltas`) VALUES
-(1, 'Enfermera', 2500000.00, 0),
-(2, 'Secretaria', 1300000.00, 2);
+(1, 'Enfermera', 2600000.00, 1),
+(2, 'Secretaria', 1900000.00, 2);
 
 -- --------------------------------------------------------
 
@@ -401,9 +401,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_user`, `nombre_completo`, `username`, `password`, `fk_rol`, `fecha_registro`) VALUES
-(1, 'Ana Garcia', 'admin_ana', '12345', 1, '2024-01-10'),
-(2, 'Luis Perez', 'oper_luis', '12345', 2, '2024-01-15'),
-(3, 'Maria Lopez', 'admin_maria', '12345', 1, '2024-02-01');
+(1, 'Ana Garcia', 'admin_ana', '$2y$10$D1hh0sSOYZv4.PQ3ZAN9TOfEE2bUW8wK2NS8ZoAZNsg00ONlZEVSy', 1, '2024-01-10'),
+(2, 'Luis Perez', 'oper_luis', '$2y$10$vOmEh4MEPUPu2bHg/NO88uFxig0ZynQu8JOC16eLfoIEjL7zb9CC2', 2, '2024-01-15'),
+(3, 'Maria Lopez', 'admin_maria', '$2y$10$hGe72gARcOLPoPqSMoM8ZuV6ueI8iqF6KW5QJEfR5DrjLvfQayh2y', 1, '2024-02-01');
 
 --
 -- Índices para tablas volcadas
@@ -597,7 +597,7 @@ ALTER TABLE `medicos`
 -- AUTO_INCREMENT de la tabla `nomina_pers`
 --
 ALTER TABLE `nomina_pers`
-  MODIFY `id_nom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
