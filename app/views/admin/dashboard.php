@@ -18,11 +18,11 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
             <div>
                 <h1 class="h3 mb-1 text-dark">Dashboard de nómina</h1>
-                <p class="text-secondary mb-0">
+                <p class="text-soft-dark mb-0">
                     Vista general del módulo para revisar el estado de cargos, sueldos, faltas y personal premiado.
                 </p>
             </div>
-            <div class="text-secondary small text-lg-end">
+            <div class="text-soft-dark small text-lg-end">
                 <div>Usuario actual: <?= htmlspecialchars($_SESSION['nombre'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?></div>
                 <div>Rol actual: Administrador</div>
             </div>

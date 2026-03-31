@@ -18,11 +18,11 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
         <div>
             <h1 class="h3 mb-1 text-dark">Módulo de nómina</h1>
-            <p class="text-secondary mb-0">
+            <p class="text-soft-dark mb-0">
                 Gestiona cargos, sueldos y faltas por cargo.
             </p>
         </div>
-        <div class="text-lg-end text-secondary small">
+        <div class="text-lg-end text-soft-dark small">
             <div>Usuario actual: <?= htmlspecialchars($_SESSION['nombre'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?></div>
             <div>Rol actual: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?></div>
         </div>
@@ -121,7 +121,6 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                         <table class="table table-dark table-hover align-middle mb-0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Cargo</th>
                                     <th>Sueldo</th>
                                     <th>Faltas</th>
@@ -131,14 +130,13 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                             <tbody>
                                 <?php if (empty($nominas)): ?>
                                     <tr>
-                                        <td colspan="5" class="text-center text-white-50 py-4">
+                                        <td colspan="4" class="text-center text-white-50 py-4">
                                             No hay registros de nómina disponibles.
                                         </td>
                                     </tr>
                                 <?php else: ?>
                                     <?php foreach ($nominas as $registroNomina): ?>
                                         <tr>
-                                            <td><?= (int) $registroNomina['id_nom'] ?></td>
                                             <td><?= htmlspecialchars($registroNomina['cargo'], ENT_QUOTES, 'UTF-8') ?></td>
                                             <td>$<?= number_format((float) $registroNomina['sueldo'], 2, ',', '.') ?></td>
                                             <td><?= (int) $registroNomina['faltas'] ?></td>

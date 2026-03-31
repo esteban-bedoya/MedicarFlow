@@ -12,6 +12,18 @@
     text-shadow: var(--neon-shadow);
 }
 
+.text-soft-dark {
+    color: #4b5563 !important;
+}
+
 .bg-dark-custom {
     background-color: var(--dark-blue) !important;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(57, 255, 20, 0.10), transparent 30%),
+        linear-gradient(180deg, #cfd7d2 0%, #b6c0ba 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
 }

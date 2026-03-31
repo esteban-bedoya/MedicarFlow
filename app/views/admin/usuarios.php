@@ -26,11 +26,11 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
             <div>
                 <h1 class="h3 mb-1 text-dark">Módulo de usuarios</h1>
-                <p class="text-secondary mb-0">
+                <p class="text-soft-dark mb-0">
                     Este espacio permite crear, editar y eliminar los usuarios que pueden entrar al sistema.
                 </p>
             </div>
-            <div class="text-secondary small text-lg-end">
+            <div class="text-soft-dark small text-lg-end">
                 <div>Usuario actual: <?= htmlspecialchars($_SESSION['nombre'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?></div>
                 <div>Rol actual: Administrador</div>
             </div>
@@ -134,7 +134,6 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                             <table class="table table-dark table-hover align-middle mb-0">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Nombre completo</th>
                                         <th>Usuario</th>
                                         <th>Rol</th>
@@ -145,14 +144,13 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                                 <tbody>
                                     <?php if (empty($usuarios)): ?>
                                         <tr>
-                                            <td colspan="6" class="text-center text-white-50 py-4">
+                                            <td colspan="5" class="text-center text-white-50 py-4">
                                                 No hay usuarios registrados.
                                             </td>
                                         </tr>
                                     <?php else: ?>
                                         <?php foreach ($usuarios as $registroUsuario): ?>
                                             <tr>
-                                                <td><?= (int) $registroUsuario['id_user'] ?></td>
                                                 <td><?= htmlspecialchars($registroUsuario['nombre_completo'], ENT_QUOTES, 'UTF-8') ?></td>
                                                 <td><?= htmlspecialchars($registroUsuario['username'], ENT_QUOTES, 'UTF-8') ?></td>
                                                 <td><?= (int) $registroUsuario['fk_rol'] === 1 ? 'Administrador' : 'Operativo' ?></td>

@@ -74,4 +74,18 @@ class User
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-}
+
+    public static function updatePasswordById($id, $password)
+    {
+        global $pdo;
+
+        $hashed = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("
+            UPDATE usuarios
+            SET password = ?
+            WHERE id_user = ?
+        ");
+
+        return $stmt->execute([$hashed, $id]);
+    }
+} 

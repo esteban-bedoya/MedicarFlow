@@ -43,9 +43,9 @@ $opcionesReporte = [
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
         <div>
             <h1 class="h3 mb-1 text-dark"><?= htmlspecialchars($configuracionVisualReporte['titulo'], ENT_QUOTES, 'UTF-8') ?></h1>
-            <p class="text-secondary mb-0"><?= htmlspecialchars($configuracionVisualReporte['descripcion'], ENT_QUOTES, 'UTF-8') ?></p>
+            <p class="text-soft-dark mb-0"><?= htmlspecialchars($configuracionVisualReporte['descripcion'], ENT_QUOTES, 'UTF-8') ?></p>
         </div>
-        <div class="text-lg-end text-secondary small">
+        <div class="text-lg-end text-soft-dark small">
             <div>Usuario actual: <?= htmlspecialchars($nombreUsuario, ENT_QUOTES, 'UTF-8') ?></div>
             <div>Rol actual: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?></div>
         </div>
@@ -108,7 +108,6 @@ $opcionesReporte = [
                 <table class="table table-dark table-hover align-middle mb-0" id="tabla_reporte_nomina">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Cargo</th>
                             <th>Sueldo</th>
                             <th>Faltas</th>
@@ -117,14 +116,13 @@ $opcionesReporte = [
                     <tbody>
                         <?php if (empty($registrosReporte)): ?>
                             <tr>
-                                <td colspan="4" class="text-center text-white-50 py-4">
+                                <td colspan="3" class="text-center text-white-50 py-4">
                                     No hay datos para este reporte.
                                 </td>
                             </tr>
                         <?php else: ?>
                             <?php foreach ($registrosReporte as $filaReporte): ?>
                                 <tr>
-                                    <td><?= (int) $filaReporte['id_nom'] ?></td>
                                     <td><?= htmlspecialchars($filaReporte['cargo'], ENT_QUOTES, 'UTF-8') ?></td>
                                     <td>$<?= number_format((float) $filaReporte['sueldo'], 2, ',', '.') ?></td>
                                     <td><?= (int) $filaReporte['faltas'] ?></td>
