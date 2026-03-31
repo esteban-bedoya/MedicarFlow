@@ -22,7 +22,25 @@
 
 body {
     background:
-        radial-gradient(circle at top left, rgba(57, 255, 20, 0.18), transparent 80%),
+        radial-gradient(circle at top left, rgba(57, 255, 20, 0.08), transparent 35%),
         linear-gradient(180deg, #c5cdc8 0%, #bcc6c0 100%);
     min-height: 100vh;
+}
+
+.form-control,
+.form-select {
+    background-color: #e8edea;
+    border-color: #aab5ae;
+    color: #1f2937;
+}
+
+.form-control::placeholder {
+    color: #6b7280;
+    opacity: 1;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #f0f4f1;
+    color: #111827;
 }

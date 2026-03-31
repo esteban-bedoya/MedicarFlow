@@ -26,18 +26,18 @@ $activePage = 'login';
                 <div class="card shadow-lg border-0 p-4 login-card">
                     <div class="text-center mb-4">
                         <h2 class="fw-bold">Medicar<span class="text-neon">Flow</span></h2>
-                        <p class="text-muted">Módulo de Nómina - Esteban Bedoya</p>
+                        <p class="text-muted">Módulo de Nómina</p>
                     </div>
 
                     <form action="../app/controllers/AuthController.php?action=login" method="POST">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Usuario:</label>
-                            <input type="text" name="username" class="form-control" placeholder="Ej: admin_ana" required>
+                            <input type="text" name="username" class="form-control" placeholder="Ingrese su usuario" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Contraseña:</label>
-                            <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña ••••••" required>
+                            <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required>
                         </div>
 
                         <button type="submit" class="btn btn-neon w-100 fw-bold mt-2">
@@ -45,9 +45,6 @@ $activePage = 'login';
                         </button>
                     </form>
 
-                    <div class="text-center mt-3">
-                        <a href="#" class="text-decoration-none small text-muted">¿Olvidó su contraseña?</a>
-                    </div>
                 </div>
             </div>
         </div>

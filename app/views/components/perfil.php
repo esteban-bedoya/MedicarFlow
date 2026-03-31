@@ -59,17 +59,17 @@ $rolActualTexto = (int) ($datosUsuario['fk_rol'] ?? 0) === 1 ? 'Administrador' :
                     <form action="/medicarflow/public/perfil.php?action=update_password" method="POST" novalidate data-formulario-perfil>
                         <div class="mb-3">
                             <label for="current_password" class="form-label">Contraseña actual</label>
-                            <input type="password" id="current_password" name="current_password" class="form-control" required>
+                            <input type="password" id="current_password" name="current_password" class="form-control" placeholder="Ingresa tu contraseña actual" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="new_password" class="form-label">Nueva contraseña</label>
-                            <input type="password" id="new_password" name="new_password" class="form-control" required>
+                            <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Escribe tu nueva contraseña" required>
                         </div>
 
                         <div class="mb-4">
                             <label for="confirm_password" class="form-label">Confirmar nueva contraseña</label>
-                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Repite la nueva contraseña" required>
                         </div>
 
                         <button type="submit" class="btn btn-outline-info">
