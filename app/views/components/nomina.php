@@ -9,7 +9,7 @@ $accionFormulario = $registroEnEdicion
     ? '/medicarflow/public/nomina.php?action=update'
     : '/medicarflow/public/nomina.php?action=store';
 
-$tituloFormulario = $registroEnEdicion ? 'Editar registro de nomina' : 'Registrar nuevo cargo';
+$tituloFormulario = $registroEnEdicion ? 'Editar registro de nómina' : 'Registrar nuevo cargo';
 $textoBotonGuardar = $registroEnEdicion ? 'Actualizar registro' : 'Guardar registro';
 $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : 'null';
 ?>
@@ -17,16 +17,14 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
 <main class="container py-4">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
         <div>
-            <h1 class="h3 mb-1 text-white">Modulo de Nomina</h1>
-            <p class="text-white-50 mb-0">
-                Gestiona cargos, sueldos y faltas del personal. El rol operativo puede crear y actualizar registros.
+            <h1 class="h3 mb-1 text-dark">Módulo de nómina</h1>
+            <p class="text-secondary mb-0">
+                Gestiona cargos, sueldos y faltas del personal.
             </p>
         </div>
-        <div class="text-lg-end">
-            <span class="badge text-bg-dark border border-neon px-3 py-2">
-                <i class="bi bi-lightning-charge-fill text-neon"></i>
-                Rol actual: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?>
-            </span>
+        <div class="text-lg-end text-secondary small">
+            <div>Usuario actual: <?= htmlspecialchars($_SESSION['nombre'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?></div>
+            <div>Rol actual: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?></div>
         </div>
     </div>
 
@@ -134,7 +132,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                                 <?php if (empty($nominas)): ?>
                                     <tr>
                                         <td colspan="5" class="text-center text-white-50 py-4">
-                                            No hay registros de nomina disponibles.
+                                            No hay registros de nómina disponibles.
                                         </td>
                                     </tr>
                                 <?php else: ?>
@@ -256,9 +254,9 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                 ...estilosBaseAlerta,
                 icon: 'warning',
                 title: '¿Estás seguro?',
-                text: 'Si borras esto, desaparecera para siempre.',
+                    text: 'Si borras esto, desaparecerá para siempre.',
                 showCancelButton: true,
-                confirmButtonText: 'Si, eliminar',
+                confirmButtonText: 'Sí, eliminar',
                 cancelButtonText: 'Cancelar',
                 confirmButtonColor: '#dc3545',
                 cancelButtonColor: '#6c757d'

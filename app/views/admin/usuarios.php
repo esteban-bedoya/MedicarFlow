@@ -25,14 +25,14 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
     <main class="container py-4">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
             <div>
-                <h1 class="h3 mb-1 text-white">Modulo de Usuarios</h1>
-                <p class="text-white-50 mb-0">
+                <h1 class="h3 mb-1 text-dark">Módulo de usuarios</h1>
+                <p class="text-secondary mb-0">
                     Este espacio permite crear, editar y eliminar los usuarios que pueden entrar al sistema.
                 </p>
             </div>
-            <div class="text-white-50 small text-lg-end">
-                <div>Administrador: <?= htmlspecialchars($_SESSION['nombre'] ?? 'Admin', ENT_QUOTES, 'UTF-8') ?></div>
-                <div>Rol permitido: Administrador</div>
+            <div class="text-secondary small text-lg-end">
+                <div>Usuario actual: <?= htmlspecialchars($_SESSION['nombre'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?></div>
+                <div>Rol actual: Administrador</div>
             </div>
         </div>
 
@@ -259,7 +259,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
                     title: '¿Estás seguro?',
                     text: 'Si borras este usuario, desaparecerá para siempre.',
                     showCancelButton: true,
-                    confirmButtonText: 'Si, eliminar',
+                    confirmButtonText: 'Sí, eliminar',
                     cancelButtonText: 'Cancelar',
                     confirmButtonColor: '#dc3545',
                     cancelButtonColor: '#6c757d'

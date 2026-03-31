@@ -18,36 +18,6 @@ class ReportesController
         }
     }
 
-    private function getReportConfig($tipoReporte, $cargoSeleccionado = '')
-    {
-        $configuraciones = [
-            'general' => [
-                'titulo' => 'Reporte general de nomina',
-                'descripcion' => 'Muestra todos los registros de nomina disponibles para consulta e impresion.',
-            ],
-            'sueldos_altos' => [
-                'titulo' => 'Reporte de sueldos altos',
-                'descripcion' => 'Incluye cargos con sueldo igual o superior a 2.000.000.',
-            ],
-            'cargo' => [
-                'titulo' => 'Reporte por cargo',
-                'descripcion' => $cargoSeleccionado !== ''
-                    ? 'Muestra unicamente los registros del cargo: ' . $cargoSeleccionado . '.'
-                    : 'Selecciona un cargo para ver solo esos registros.',
-            ],
-            'premios' => [
-                'titulo' => 'Reporte de premios',
-                'descripcion' => 'Reconoce al personal con cero faltas.',
-            ],
-            'faltas' => [
-                'titulo' => 'Reporte de faltas',
-                'descripcion' => 'Lista los registros que tienen una o mas faltas.',
-            ],
-        ];
-
-        return $configuraciones[$tipoReporte] ?? $configuraciones['general'];
-    }
-
     public function index()
     {
         $this->requireSessionAdmin();
@@ -73,7 +43,6 @@ class ReportesController
             $registrosReporte = Nomina::getReportData($tipoReporte);
         }
 
-        $configuracionReporte = $this->getReportConfig($tipoReporte, $cargoSeleccionado);
         $fechaGeneracion = date('d/m/Y H:i');
 
         include __DIR__ . '/../views/admin/reportes.php';

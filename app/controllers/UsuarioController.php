@@ -55,11 +55,11 @@ class UsuarioController
         }
 
         if (!in_array((int) $rolUsuario, [1, 2], true)) {
-            return 'El rol seleccionado no es valido.';
+            return 'El rol seleccionado no es válido.';
         }
 
         if (!$esEdicion && trim((string) $contrasena) === '') {
-            return 'La contrasena es obligatoria para crear usuarios.';
+            return 'La contraseña es obligatoria para crear usuarios.';
         }
 
         return null;
@@ -193,7 +193,7 @@ class UsuarioController
         }
 
         if ((int) $_SESSION['id_user'] === $idUsuario) {
-            $this->setFlash('warning', '¡Cuidado!', 'No puedes eliminar tu propio usuario mientras estas en sesion.');
+            $this->setFlash('warning', '¡Cuidado!', 'No puedes eliminar tu propio usuario mientras estás en sesión.');
             header('Location: ' . $this->getRedirectUrl());
             exit;
         }

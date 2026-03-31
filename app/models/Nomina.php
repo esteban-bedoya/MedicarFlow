@@ -128,4 +128,38 @@ class Nomina
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public static function getDashboardSummary()
+    {
+        global $pdo;
+
+        $stmt = $pdo->query("
+            SELECT
+                COUNT(*) AS total_registros,
+                COUNT(DISTINCT cargo) AS total_cargos,
+                SUM(CASE WHEN faltas > 0 THEN 1 ELSE 0 END) AS total_con_faltas,
+                SUM(CASE WHEN faltas = 0 THEN 1 ELSE 0 END) AS total_premiados
+            FROM nomina_pers
+        ");
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getChartDataByCargo()
+    {
+        global $pdo;
+
+        $stmt = $pdo->query("
+            SELECT
+                cargo,
+                AVG(sueldo) AS sueldo_promedio,
+                SUM(faltas) AS total_faltas,
+                SUM(CASE WHEN faltas = 0 THEN 1 ELSE 0 END) AS total_premiados
+            FROM nomina_pers
+            GROUP BY cargo
+            ORDER BY cargo ASC
+        ");
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

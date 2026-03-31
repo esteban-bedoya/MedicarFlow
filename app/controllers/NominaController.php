@@ -19,7 +19,7 @@ class NominaController
 
         if (!isset($_SESSION['rol']) || !in_array((int) $_SESSION['rol'], [1, 2], true)) {
             http_response_code(403);
-            die('No tienes permisos para acceder a esta seccion.');
+            die('No tienes permisos para acceder a esta sección.');
         }
     }
 
@@ -29,7 +29,7 @@ class NominaController
 
         if ((int) ($_SESSION['rol'] ?? 0) !== 1) {
             http_response_code(403);
-            die('Solo el administrador puede eliminar registros de nomina.');
+            die('Solo el administrador puede eliminar registros de nómina.');
         }
     }
 
@@ -69,11 +69,11 @@ class NominaController
         }
 
         if (!is_numeric($sueldo) || (float) $sueldo < 0) {
-            return 'El sueldo debe ser un numero valido mayor o igual a 0.';
+            return 'El sueldo debe ser un número válido mayor o igual a 0.';
         }
 
         if (filter_var($faltas, FILTER_VALIDATE_INT) === false || (int) $faltas < 0) {
-            return 'Las faltas deben ser un numero entero mayor o igual a 0.';
+            return 'Las faltas deben ser un número entero mayor o igual a 0.';
         }
 
         return null;

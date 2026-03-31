@@ -3,6 +3,33 @@ $usuarioEsAdmin = (int) ($_SESSION['rol'] ?? 0) === 1;
 $nombreUsuario = $_SESSION['nombre'] ?? 'Usuario';
 $tipoReporteActual = $_GET['tipo'] ?? 'general';
 
+$titulosYDescripciones = [
+    'general' => [
+        'titulo' => 'Reporte general de nómina',
+        'descripcion' => 'Muestra todos los registros de nómina disponibles para consulta e impresión.',
+    ],
+    'sueldos_altos' => [
+        'titulo' => 'Reporte de sueldos altos',
+        'descripcion' => 'Incluye cargos con sueldo igual o superior a 2.000.000.',
+    ],
+    'cargo' => [
+        'titulo' => 'Reporte por cargo',
+        'descripcion' => $cargoSeleccionado !== ''
+            ? 'Muestra únicamente los registros del cargo: ' . $cargoSeleccionado . '.'
+            : 'Selecciona un cargo para ver solo esos registros.',
+    ],
+    'premios' => [
+        'titulo' => 'Reporte de premios',
+        'descripcion' => 'Muestra los cargos o registros que no presentan faltas.',
+    ],
+    'faltas' => [
+        'titulo' => 'Reporte de faltas',
+        'descripcion' => 'Lista los cargos o registros donde sí se presentan faltas.',
+    ],
+];
+
+$configuracionVisualReporte = $titulosYDescripciones[$tipoReporteActual] ?? $titulosYDescripciones['general'];
+
 $opcionesReporte = [
     'general' => 'Reporte general',
     'sueldos_altos' => 'Sueldos altos',
@@ -15,13 +42,12 @@ $opcionesReporte = [
 <main class="container py-4">
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
         <div>
-            <h1 class="h3 mb-1 text-white"><?= htmlspecialchars($configuracionReporte['titulo'], ENT_QUOTES, 'UTF-8') ?></h1>
-            <p class="text-white-50 mb-0"><?= htmlspecialchars($configuracionReporte['descripcion'], ENT_QUOTES, 'UTF-8') ?></p>
+            <h1 class="h3 mb-1 text-dark"><?= htmlspecialchars($configuracionVisualReporte['titulo'], ENT_QUOTES, 'UTF-8') ?></h1>
+            <p class="text-secondary mb-0"><?= htmlspecialchars($configuracionVisualReporte['descripcion'], ENT_QUOTES, 'UTF-8') ?></p>
         </div>
-        <div class="text-lg-end text-white-50 small">
-            <div>Generado por: <?= htmlspecialchars($nombreUsuario, ENT_QUOTES, 'UTF-8') ?></div>
-            <div>Fecha: <?= htmlspecialchars($fechaGeneracion, ENT_QUOTES, 'UTF-8') ?></div>
-            <div>Rol: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?></div>
+        <div class="text-lg-end text-secondary small">
+            <div>Usuario actual: <?= htmlspecialchars($nombreUsuario, ENT_QUOTES, 'UTF-8') ?></div>
+            <div>Rol actual: <?= $usuarioEsAdmin ? 'Administrador' : 'Operativo' ?></div>
         </div>
     </div>
 
@@ -53,13 +79,13 @@ $opcionesReporte = [
 
                 <div class="col-12 col-lg-4">
                     <label for="buscador_tabla" class="form-label">Filtrar en la tabla</label>
-                    <input type="text" id="buscador_tabla" class="form-control" placeholder="Escribe un cargo, sueldo o numero de faltas">
+                    <input type="text" id="buscador_tabla" class="form-control" placeholder="Escribe un cargo, sueldo o número de faltas">
                 </div>
 
                 <div class="col-12 d-flex gap-2 flex-wrap justify-content-lg-end">
                     <a href="/medicarflow/public/nomina.php" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left-circle"></i>
-                        Volver a nomina
+                        Volver a nómina
                     </a>
                     <button type="button" class="btn btn-outline-info" id="boton_imprimir">
                         <i class="bi bi-printer"></i>
