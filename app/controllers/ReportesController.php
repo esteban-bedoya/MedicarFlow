@@ -18,7 +18,7 @@ class ReportesController
         }
     }
 
-    private function getReportConfig($tipoReporte)
+    private function getReportConfig($tipoReporte, $cargoSeleccionado = '')
     {
         $configuraciones = [
             'general' => [
@@ -29,9 +29,11 @@ class ReportesController
                 'titulo' => 'Reporte de sueldos altos',
                 'descripcion' => 'Incluye cargos con sueldo igual o superior a 2.000.000.',
             ],
-            'secretarias' => [
-                'titulo' => 'Reporte de secretarias',
-                'descripcion' => 'Filtra los registros cuyo cargo corresponde a secretaria.',
+            'cargo' => [
+                'titulo' => 'Reporte por cargo',
+                'descripcion' => $cargoSeleccionado !== ''
+                    ? 'Muestra unicamente los registros del cargo: ' . $cargoSeleccionado . '.'
+                    : 'Selecciona un cargo para ver solo esos registros.',
             ],
             'premios' => [
                 'titulo' => 'Reporte de premios',
@@ -51,14 +53,27 @@ class ReportesController
         $this->requireSessionAdmin();
 
         $tipoReporte = $_GET['tipo'] ?? 'general';
-        $reportesPermitidos = ['general', 'sueldos_altos', 'secretarias', 'premios', 'faltas'];
+        $cargoSeleccionado = trim($_GET['cargo'] ?? '');
+        $reportesPermitidos = ['general', 'sueldos_altos', 'cargo', 'premios', 'faltas'];
 
         if (!in_array($tipoReporte, $reportesPermitidos, true)) {
             $tipoReporte = 'general';
         }
 
-        $configuracionReporte = $this->getReportConfig($tipoReporte);
-        $registrosReporte = Nomina::getReportData($tipoReporte);
+        $listaDeCargos = Nomina::getAvailableCargos();
+
+        if ($tipoReporte === 'cargo') {
+            if ($cargoSeleccionado !== '' && in_array($cargoSeleccionado, $listaDeCargos, true)) {
+                $registrosReporte = Nomina::getReportDataByCargo($cargoSeleccionado);
+            } else {
+                $cargoSeleccionado = '';
+                $registrosReporte = [];
+            }
+        } else {
+            $registrosReporte = Nomina::getReportData($tipoReporte);
+        }
+
+        $configuracionReporte = $this->getReportConfig($tipoReporte, $cargoSeleccionado);
         $fechaGeneracion = date('d/m/Y H:i');
 
         include __DIR__ . '/../views/admin/reportes.php';

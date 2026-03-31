@@ -6,7 +6,7 @@ $tipoReporteActual = $_GET['tipo'] ?? 'general';
 $opcionesReporte = [
     'general' => 'Reporte general',
     'sueldos_altos' => 'Sueldos altos',
-    'secretarias' => 'Secretarias',
+    'cargo' => 'Cargo',
     'premios' => 'Premios',
     'faltas' => 'Faltas',
 ];
@@ -30,21 +30,33 @@ $opcionesReporte = [
             <div class="row g-3 align-items-end">
                 <div class="col-12 col-lg-4">
                     <label for="tipo_reporte" class="form-label">Tipo de reporte</label>
-                    <select id="tipo_reporte" class="form-select" onchange="window.location.href=this.value;">
+                    <select id="tipo_reporte" class="form-select">
                         <?php foreach ($opcionesReporte as $valorReporte => $textoReporte): ?>
-                            <option value="/medicarflow/public/reportes.php?tipo=<?= urlencode($valorReporte) ?>" <?= $tipoReporteActual === $valorReporte ? 'selected' : '' ?>>
+                            <option value="<?= htmlspecialchars($valorReporte, ENT_QUOTES, 'UTF-8') ?>" <?= $tipoReporteActual === $valorReporte ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($textoReporte, ENT_QUOTES, 'UTF-8') ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
 
+                <div class="col-12 col-lg-4" id="bloque_cargo_reporte" style="<?= $tipoReporteActual === 'cargo' ? '' : 'display: none;' ?>">
+                    <label for="cargo_reporte" class="form-label">Cargo</label>
+                    <select id="cargo_reporte" class="form-select" <?= $tipoReporteActual === 'cargo' ? '' : 'disabled' ?>>
+                        <option value="">Selecciona un cargo</option>
+                        <?php foreach ($listaDeCargos as $cargoActual): ?>
+                            <option value="<?= htmlspecialchars($cargoActual, ENT_QUOTES, 'UTF-8') ?>" <?= $cargoSeleccionado === $cargoActual ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($cargoActual, ENT_QUOTES, 'UTF-8') ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
                 <div class="col-12 col-lg-4">
-                    <label for="buscador_tabla" class="form-label">Buscar en la tabla</label>
+                    <label for="buscador_tabla" class="form-label">Filtrar en la tabla</label>
                     <input type="text" id="buscador_tabla" class="form-control" placeholder="Escribe un cargo, sueldo o numero de faltas">
                 </div>
 
-                <div class="col-12 col-lg-4 d-flex gap-2 flex-wrap justify-content-lg-end">
+                <div class="col-12 d-flex gap-2 flex-wrap justify-content-lg-end">
                     <a href="/medicarflow/public/nomina.php" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left-circle"></i>
                         Volver a nomina
@@ -132,9 +144,47 @@ $opcionesReporte = [
 
 <script src="assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 <script>
+    const selectorTipoReporte = document.getElementById('tipo_reporte');
+    const bloqueCargoReporte = document.getElementById('bloque_cargo_reporte');
+    const selectorCargoReporte = document.getElementById('cargo_reporte');
     const campoBuscadorTabla = document.getElementById('buscador_tabla');
     const tablaReporteNomina = document.getElementById('tabla_reporte_nomina');
     const botonImprimirReporte = document.getElementById('boton_imprimir');
+
+    function actualizarRutaReporte() {
+        if (!selectorTipoReporte) {
+            return;
+        }
+
+        const tipoSeleccionado = selectorTipoReporte.value;
+        let nuevaRuta = '/medicarflow/public/reportes.php?tipo=' + encodeURIComponent(tipoSeleccionado);
+
+        if (tipoSeleccionado === 'cargo') {
+            bloqueCargoReporte.style.display = '';
+            selectorCargoReporte.disabled = false;
+
+            if (selectorCargoReporte.value !== '') {
+                nuevaRuta += '&cargo=' + encodeURIComponent(selectorCargoReporte.value);
+            }
+        } else if (selectorCargoReporte) {
+            bloqueCargoReporte.style.display = 'none';
+            selectorCargoReporte.disabled = true;
+        }
+
+        window.location.href = nuevaRuta;
+    }
+
+    if (selectorTipoReporte) {
+        selectorTipoReporte.addEventListener('change', actualizarRutaReporte);
+    }
+
+    if (selectorCargoReporte) {
+        selectorCargoReporte.addEventListener('change', function () {
+            if (selectorTipoReporte && selectorTipoReporte.value === 'cargo') {
+                actualizarRutaReporte();
+            }
+        });
+    }
 
     if (campoBuscadorTabla && tablaReporteNomina) {
         campoBuscadorTabla.addEventListener('keyup', function () {

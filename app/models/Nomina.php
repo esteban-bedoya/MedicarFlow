@@ -81,10 +81,6 @@ class Nomina
                 $consulta = $consultaBase . " WHERE sueldo >= 2000000 ORDER BY sueldo DESC";
                 break;
 
-            case 'secretarias':
-                $consulta = $consultaBase . " WHERE cargo LIKE 'Secretaria%' ORDER BY cargo ASC";
-                break;
-
             case 'premios':
                 $consulta = $consultaBase . " WHERE faltas = 0 ORDER BY cargo ASC";
                 break;
@@ -102,5 +98,34 @@ class Nomina
         $stmt = $pdo->query($consulta);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getReportDataByCargo($cargoSeleccionado)
+    {
+        global $pdo;
+
+        $stmt = $pdo->prepare("
+            SELECT id_nom, cargo, sueldo, faltas
+            FROM nomina_pers
+            WHERE cargo = ?
+            ORDER BY id_nom DESC
+        ");
+        $stmt->execute([$cargoSeleccionado]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAvailableCargos()
+    {
+        global $pdo;
+
+        $stmt = $pdo->query("
+            SELECT DISTINCT cargo
+            FROM nomina_pers
+            WHERE cargo IS NOT NULL AND cargo <> ''
+            ORDER BY cargo ASC
+        ");
+
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 }
