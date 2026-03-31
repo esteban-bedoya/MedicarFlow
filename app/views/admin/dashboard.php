@@ -32,8 +32,7 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
             <div class="card-body">
                 <h2 class="h5 text-neon">Lectura rápida del dashboard</h2>
                 <p class="mb-0 text-white-50">
-                    Este panel permite identificar cuántos registros de nómina existen, cuántos cargos distintos están activos,
-                    qué tan frecuentes son las faltas y cuántos empleados pueden considerarse premiados por no tener faltas.
+                    Este panel permite identificar cuántos registros de nómina existen, cuántos cargos distintos están activos, qué cargos pueden considerarse premiados por no tener faltas y revisar qué tan frecuentes son estas.<br>
                     Las gráficas ayudan a comparar sueldos, faltas y premios por cargo para tomar decisiones rápidas desde el rol administrador.
                 </p>
             </div>
@@ -139,6 +138,32 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
             }
         };
 
+        const configuracionEnteros = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#f8fafc'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#f8fafc' },
+                    grid: { color: 'rgba(255,255,255,0.08)' }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#f8fafc',
+                        stepSize: 1,
+                        precision: 0
+                    },
+                    grid: { color: 'rgba(255,255,255,0.08)' }
+                }
+            }
+        };
+
         new Chart(document.getElementById('grafica_barras'), {
             type: 'bar',
             data: {
@@ -151,7 +176,7 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
                     borderWidth: 1
                 }]
             },
-            options: configuracionComun
+            options: configuracionEnteros
         });
 
         new Chart(document.getElementById('grafica_area'), {
@@ -209,7 +234,9 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
                         pointLabels: { color: '#f8fafc' },
                         ticks: {
                             color: '#f8fafc',
-                            backdropColor: 'transparent'
+                            backdropColor: 'transparent',
+                            stepSize: 1,
+                            precision: 0
                         }
                     }
                 }

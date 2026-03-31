@@ -19,7 +19,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
         <div>
             <h1 class="h3 mb-1 text-dark">Módulo de nómina</h1>
             <p class="text-secondary mb-0">
-                Gestiona cargos, sueldos y faltas del personal.
+                Gestiona cargos, sueldos y faltas por cargo.
             </p>
         </div>
         <div class="text-lg-end text-secondary small">
