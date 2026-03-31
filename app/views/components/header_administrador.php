@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-outline-danger btn-sm mt-1" href="../app/controllers/Logout.php">
+                        <a class="btn btn-outline-danger btn-sm mt-1" href="/medicarflow/public/logout.php">
                             <i class="bi bi-box-arrow-right"></i> Salir
                         </a>
                     </li>
