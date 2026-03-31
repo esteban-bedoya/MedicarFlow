@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 31-03-2026 a las 01:49:22
+-- Tiempo de generación: 31-03-2026 a las 04:04:57
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -403,7 +403,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_user`, `nombre_completo`, `username`, `password`, `fk_rol`, `fecha_registro`) VALUES
 (1, 'Ana Garcia', 'admin_ana', '$2y$10$D1hh0sSOYZv4.PQ3ZAN9TOfEE2bUW8wK2NS8ZoAZNsg00ONlZEVSy', 1, '2024-01-10'),
 (2, 'Luis Perez', 'oper_luis', '$2y$10$vOmEh4MEPUPu2bHg/NO88uFxig0ZynQu8JOC16eLfoIEjL7zb9CC2', 2, '2024-01-15'),
-(3, 'Maria Lopez', 'admin_maria', '$2y$10$hGe72gARcOLPoPqSMoM8ZuV6ueI8iqF6KW5QJEfR5DrjLvfQayh2y', 1, '2024-02-01');
+(3, 'Maria Lopez', 'admin_maria', '$2y$10$hGe72gARcOLPoPqSMoM8ZuV6ueI8iqF6KW5QJEfR5DrjLvfQayh2y', 1, '2024-02-01'),
+(4, 'Esteban Bedoya', 'admin_esteban', '$2y$10$4AcfnyYO.sEzYrlykKZAI.5coDWVEtM79T4a8aUt/sdXu8mTGQyZe', 1, '2026-03-30'),
+(5, 'David Botero', 'oper_david', '$2y$10$B0yoLdS2i87CSM5rPxxGaOUjq2djXVMe.Kpc/2Yxytn38rhyMBVcG', 2, '2026-03-30');
 
 --
 -- Índices para tablas volcadas
@@ -627,7 +629,7 @@ ALTER TABLE `recetas_med`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
