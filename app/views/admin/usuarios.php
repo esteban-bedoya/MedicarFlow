@@ -40,7 +40,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
             <div class="col-12 col-xl-4">
                 <div class="card bg-dark text-white border border-neon shadow-sm h-100">
                     <div class="card-header border-bottom border-secondary">
-                        <h2 class="h5 mb-0">
+                        <h2 class="h5 mb-0 text-neon">
                             <i class="bi bi-person-plus text-neon"></i>
                             <?= $tituloFormulario ?>
                         </h2>
@@ -123,11 +123,11 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
             <div class="col-12 col-xl-8">
                 <div class="card bg-dark text-white border border-neon shadow-sm">
                     <div class="card-header border-bottom border-secondary d-flex justify-content-between align-items-center flex-wrap gap-2">
-                        <h2 class="h5 mb-0">
+                        <h2 class="h5 mb-0 text-neon">
                             <i class="bi bi-people text-neon"></i>
                             Usuarios registrados
                         </h2>
-                        <span class="text-white-50 small">Total: <?= count($usuarios) ?></span>
+                        <span class="text-white small">Total: <?= count($usuarios) ?></span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

@@ -24,23 +24,23 @@ $rolActualTexto = (int) ($datosUsuario['fk_rol'] ?? 0) === 1 ? 'Administrador' :
         <div class="col-12 col-xl-5">
             <div class="card bg-dark text-white border border-neon shadow-sm h-100">
                 <div class="card-header border-bottom border-secondary">
-                    <h2 class="h5 mb-0">
+                    <h2 class="h5 mb-0 text-neon">
                         <i class="bi bi-person-vcard text-neon"></i>
                         Datos del perfil
                     </h2>
                 </div>
                 <div class="card-body">
                     <dl class="row mb-0">
-                        <dt class="col-sm-5 text-white-50">Nombre completo</dt>
+                        <dt class="col-sm-5 text-white">Nombre completo</dt>
                         <dd class="col-sm-7"><?= htmlspecialchars($datosUsuario['nombre_completo'], ENT_QUOTES, 'UTF-8') ?></dd>
 
-                        <dt class="col-sm-5 text-white-50">Usuario</dt>
+                        <dt class="col-sm-5 text-white">Usuario</dt>
                         <dd class="col-sm-7"><?= htmlspecialchars($datosUsuario['username'], ENT_QUOTES, 'UTF-8') ?></dd>
 
-                        <dt class="col-sm-5 text-white-50">Rol</dt>
+                        <dt class="col-sm-5 text-white">Rol</dt>
                         <dd class="col-sm-7"><?= htmlspecialchars($rolActualTexto, ENT_QUOTES, 'UTF-8') ?></dd>
 
-                        <dt class="col-sm-5 text-white-50">Fecha de registro</dt>
+                        <dt class="col-sm-5 text-white">Fecha de registro</dt>
                         <dd class="col-sm-7"><?= htmlspecialchars($datosUsuario['fecha_registro'], ENT_QUOTES, 'UTF-8') ?></dd>
                     </dl>
                 </div>
@@ -50,7 +50,7 @@ $rolActualTexto = (int) ($datosUsuario['fk_rol'] ?? 0) === 1 ? 'Administrador' :
         <div class="col-12 col-xl-7">
             <div class="card bg-dark text-white border border-neon shadow-sm h-100">
                 <div class="card-header border-bottom border-secondary">
-                    <h2 class="h5 mb-0">
+                    <h2 class="h5 mb-0 text-neon">
                         <i class="bi bi-key text-neon"></i>
                         Cambiar contraseña
                     </h2>

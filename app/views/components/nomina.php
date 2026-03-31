@@ -32,7 +32,7 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
         <div class="col-12 col-xl-4">
             <div class="card bg-dark text-white border border-neon shadow-sm h-100">
                 <div class="card-header border-bottom border-secondary">
-                    <h2 class="h5 mb-0">
+                    <h2 class="h5 mb-0 text-neon">
                         <i class="bi bi-cash-stack text-neon"></i>
                         <?= $tituloFormulario ?>
                     </h2>
@@ -108,11 +108,11 @@ $mensajeEmergenteJson = $mensajeEmergente ? json_encode($mensajeEmergente, JSON_
         <div class="col-12 col-xl-8">
             <div class="card bg-dark text-white border border-neon shadow-sm">
                 <div class="card-header border-bottom border-secondary d-flex justify-content-between align-items-center flex-wrap gap-2">
-                    <h2 class="h5 mb-0">
+                    <h2 class="h5 mb-0 text-neon">
                         <i class="bi bi-table text-neon"></i>
                         Registros actuales
                     </h2>
-                    <span class="text-white-50 small">
+                    <span class="text-white small">
                         Total: <?= count($nominas) ?>
                     </span>
                 </div>

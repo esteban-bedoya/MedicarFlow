@@ -30,8 +30,8 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
 
         <div class="card bg-dark text-white border border-neon shadow-sm mb-4">
             <div class="card-body">
-                <h2 class="h5 text-neon">Lectura rápida del dashboard</h2>
-                <p class="mb-0 text-white-50">
+                <h2 class="h5 text-neon">Lectura del dashboard</h2>
+                <p class="mb-0 text-white">
                     Este panel permite identificar cuántos registros de nómina existen, cuántos cargos distintos están activos, qué cargos pueden considerarse premiados por no tener faltas y revisar qué tan frecuentes son estas.<br>
                     Las gráficas ayudan a comparar sueldos, faltas y premios por cargo para tomar decisiones rápidas desde el rol administrador.
                 </p>
@@ -42,7 +42,7 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
             <div class="col-12 col-md-6 col-xl-3">
                 <div class="card bg-dark text-white border border-neon shadow-sm card-stats h-100">
                     <div class="card-body">
-                        <span class="text-white-50 small d-block mb-2">Total registros</span>
+                        <span class="text-white small d-block mb-2">Total registros</span>
                         <h2 class="display-6 mb-0 text-neon"><?= (int) ($resumenDashboard['total_registros'] ?? 0) ?></h2>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
             <div class="col-12 col-md-6 col-xl-3">
                 <div class="card bg-dark text-white border border-neon shadow-sm card-stats h-100">
                     <div class="card-body">
-                        <span class="text-white-50 small d-block mb-2">Cargos diferentes</span>
+                        <span class="text-white small d-block mb-2">Cargos diferentes</span>
                         <h2 class="display-6 mb-0 text-neon"><?= (int) ($resumenDashboard['total_cargos'] ?? 0) ?></h2>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
             <div class="col-12 col-md-6 col-xl-3">
                 <div class="card bg-dark text-white border border-neon shadow-sm card-stats h-100">
                     <div class="card-body">
-                        <span class="text-white-50 small d-block mb-2">Con faltas</span>
+                        <span class="text-white small d-block mb-2">Con faltas</span>
                         <h2 class="display-6 mb-0 text-neon"><?= (int) ($resumenDashboard['total_con_faltas'] ?? 0) ?></h2>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ $datosGraficas = $resumenGraficoJson ?? '{}';
             <div class="col-12 col-md-6 col-xl-3">
                 <div class="card bg-dark text-white border border-neon shadow-sm card-stats h-100">
                     <div class="card-body">
-                        <span class="text-white-50 small d-block mb-2">Premiados</span>
+                        <span class="text-white small d-block mb-2">Premiados</span>
                         <h2 class="display-6 mb-0 text-neon"><?= (int) ($resumenDashboard['total_premiados'] ?? 0) ?></h2>
                     </div>
                 </div>

@@ -83,7 +83,7 @@ $opcionesReporte = [
                 </div>
 
                 <div class="col-12 d-flex gap-2 flex-wrap justify-content-lg-end">
-                    <a href="/medicarflow/public/nomina.php" class="btn btn-outline-secondary">
+                    <a href="/medicarflow/public/nomina.php" class="btn btn-outline-light">
                         <i class="bi bi-arrow-left-circle"></i>
                         Volver a nómina
                     </a>
@@ -98,7 +98,7 @@ $opcionesReporte = [
 
     <div class="card bg-dark text-white border border-neon shadow-sm" id="zona_reporte">
         <div class="card-header border-bottom border-secondary">
-            <h2 class="h5 mb-0">
+            <h2 class="h5 mb-0 text-neon">
                 <i class="bi bi-file-earmark-text text-neon"></i>
                 Tabla del reporte
             </h2>

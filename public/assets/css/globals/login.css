@@ -2,7 +2,7 @@
 
 /* Sobrescribimos el fondo del body para el Login */
 body.bg-dark {
-    background-color: #051a2b !important; /* Un azul muy oscuro para que resalte el neón */
+    background-color: #b7c0ba !important;
 }
 
 /* La tarjeta del login */
