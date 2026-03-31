@@ -51,7 +51,7 @@ $opcionesReporte = [
         </div>
     </div>
 
-    <div class="card bg-dark text-white border border-neon shadow-sm mb-4">
+    <div class="card bg-dark text-white border border-neon shadow-sm mb-4" id="bloque_controles_reporte">
         <div class="card-body">
             <div class="row g-3 align-items-end">
                 <div class="col-12 col-lg-4">
@@ -89,7 +89,7 @@ $opcionesReporte = [
                     </a>
                     <button type="button" class="btn btn-outline-info" id="boton_imprimir">
                         <i class="bi bi-printer"></i>
-                        Imprimir reporte
+                        Imprimir / PDF
                     </button>
                 </div>
             </div>
@@ -139,9 +139,7 @@ $opcionesReporte = [
 <style>
     @media print {
         nav,
-        #tipo_reporte,
-        #buscador_tabla,
-        #boton_imprimir,
+        #bloque_controles_reporte,
         .btn,
         label {
             display: none !important;
