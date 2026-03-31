@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $activePage == 'mi_perfil' ? 'active text-neon' : '' ?>" href="perfil.php">
+                        <a class="nav-link <?= $activePage == 'mi_perfil' ? 'active text-neon' : '' ?>" href="/medicarflow/public/perfil.php">
                             <i class="bi bi-person-circle"></i> Mi Perfil
                         </a>
                     </li>

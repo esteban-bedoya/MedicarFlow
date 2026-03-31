@@ -66,4 +66,41 @@ class Nomina
 
         return $stmt->execute([$id]);
     }
+
+    public static function getReportData($tipoReporte = 'general')
+    {
+        global $pdo;
+
+        $consultaBase = "
+            SELECT id_nom, cargo, sueldo, faltas
+            FROM nomina_pers
+        ";
+
+        switch ($tipoReporte) {
+            case 'sueldos_altos':
+                $consulta = $consultaBase . " WHERE sueldo >= 2000000 ORDER BY sueldo DESC";
+                break;
+
+            case 'secretarias':
+                $consulta = $consultaBase . " WHERE cargo LIKE 'Secretaria%' ORDER BY cargo ASC";
+                break;
+
+            case 'premios':
+                $consulta = $consultaBase . " WHERE faltas = 0 ORDER BY cargo ASC";
+                break;
+
+            case 'faltas':
+                $consulta = $consultaBase . " WHERE faltas > 0 ORDER BY faltas DESC, cargo ASC";
+                break;
+
+            case 'general':
+            default:
+                $consulta = $consultaBase . " ORDER BY id_nom DESC";
+                break;
+        }
+
+        $stmt = $pdo->query($consulta);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
