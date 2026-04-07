@@ -26,7 +26,8 @@ $activePage = 'login';
                 <div class="card shadow-lg border-0 p-4 login-card">
                     <div class="text-center mb-4">
                         <h2 class="fw-bold">Medicar<span class="text-neon">Flow</span></h2>
-                        <p class="text-muted">Módulo de Nómina</p>
+                        <p class="text-muted">Bienvenido al módulo de nómina</p>
+
                     </div>
 
                     <form action="../app/controllers/AuthController.php?action=login" method="POST">
